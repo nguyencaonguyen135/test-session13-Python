@@ -13,7 +13,7 @@ QUẢN LÝ BÃI XE - SMART PARKING
 5. Thoat chưong trinh
 
 Mời nhập chức năng: ''').strip()
-#     [Chức năng 1] Thêm xe mới: 
+# [Chức năng 1] Thêm xe mới: 
 # Tự động gán ID tăng dần (mặc định bắt đầu từ 1).
 # Loại xe và Chủ xe không được để trống. Nếu trường nào để trống yêu cầu người dùng nhập lại.
 # [Chức năng 2] Hiển thị danh sách: 
@@ -29,17 +29,21 @@ Mời nhập chức năng: ''').strip()
 # Nếu không tồn tại: Thông báo "Không tìm thấy xe để xóa!".
     match choice:
         case "1":
-            new_id = int(input("Nhập mã xe: "))
+            new_id = len(parking_lot) + 1
             new_type = input("Nhập loại xe: ")
             new_owner = input("Nhập tên chủ xe: ")
             if not new_type or not new_owner:
                 print("Không được để trống thông tin xe!")
+                continue
             else:
                 parking_lot.append({'id': new_id, 'type': new_type, 'owner': new_owner})
             print("Thêm xe thành công!")
         case "2":
-            for i in parking_lot:
-                print(f"{i['id']} - {i['type']} - {i['owner']}")
+            if not parking_lot:
+                print("Bãi xe hiện đang trống!")
+            else:
+                for i in parking_lot:
+                    print(f"{i['id']} - {i['type']} - {i['owner']}")
         case "3":
             search_id = int(input("Nhập mã xe cần tìm: "))
             found = False
